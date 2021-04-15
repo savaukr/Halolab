@@ -1,0 +1,20 @@
+.card-wrap {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	flex-basis: 30%;
+	margin: 15px 0;
+	border: 1px solid grey;
+}
+.card__price {
+	padding: 2px 5px;
+}
+.card__price > div {
+	margin: 0 10px 0;
+}
+
+@media only screen and (max-width: 740px) {
+	.card-wrap {
+		flex-basis: 45%;
+	}
+}
