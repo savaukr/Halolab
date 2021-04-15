@@ -3,20 +3,47 @@
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
+	color: #000;
+	background: #E5E5E5;
 }
 .cards {
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
 }
-.cards__btn {
-	width: 200px;
-	margin: 10px 0;
+.cheapest__btn {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 16px 48px;
+	margin-top: 69px; 
+	color: #FFFFFF;
+	background: #50DAA8;
+	border-radius: 16px;
+	outline: none;
+	border:none;
 }
 #name, #phone {
 	display: block;
 	margin: 10px auto; 
 }
+
+
+.input_validate {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 16px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+	border-radius: 16px;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: -0.02em;
+	color: rgba(0, 0, 0, 0.5);
+	outline: none;
+}
+
 
 @media only screen and (max-width: 540px) {
 	.cards {

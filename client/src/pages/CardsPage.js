@@ -89,7 +89,7 @@ export const CardsPage = () => {
 					)
 				})}
 			</div>
-			<button className="cards__btn" onClick={cheapestHandler}>Buy cheapest</button>
+			<button className="cheapest__btn" onClick={cheapestHandler}>Buy cheapest</button>
 			<Modal
 				active={modalActive}
 				setActive={setModalActive}
@@ -101,7 +101,7 @@ export const CardsPage = () => {
 					  	id="name"
 						name="userName"
 						type="text"
-						className="input-validate"
+						className="input_validate"
 						value={userName.value}
 						onChange={userName.onChange}
 						onBlur={userName.onBlur}
@@ -111,9 +111,9 @@ export const CardsPage = () => {
 					  	id="phone"
 						name="userPhone"
 						type="text"
-						className="input-validate"
+						className="input_validate"
 						value={userPhone.value}
-						onChange={userName.onChange}
+						onChange={userPhone.onChange}
 						onBlur={userPhone.onBlur}
 				  />
 		          

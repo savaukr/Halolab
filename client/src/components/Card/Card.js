@@ -2,7 +2,7 @@ import React from 'react'
 import'./card.css'
 
 export const Card = ({card, setModalActive, setModalData}) => {
-	const byClickHandler = () => {
+	const buyClickHandler = () => {
 		setModalData({category: card.category, name:card.name, price: card.price})
 		setModalActive(true)
 	}
@@ -11,16 +11,13 @@ export const Card = ({card, setModalActive, setModalData}) => {
 			<div className="card__category">{card.category}</div>
 			<div className="card__name">{card.name}</div>
 			<div className="card__price">
-				<div>
-					<span className="card__price">{card.price}</span>
+					<div className="card__price_amount">{card.price}</div>
 					<button 
-						className="card__price card__price_btn"
-						onClick={byClickHandler}
+						className="card__price_btn"
+						onClick={buyClickHandler}
 					>
 						BUY
 					</button>
-				</div>
-				
 			</div>
 		</div>
 	)

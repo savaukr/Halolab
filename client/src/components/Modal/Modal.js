@@ -14,15 +14,14 @@ export const Modal = ({active, setActive, setAnswer, modalData, children}) => {
 			          event.preventDefault();
 			        }}
 				>
-					&times;
+					<span>&times;</span>
 				</div>
 				<div className="modal__body">
 					<div className="card__category">{modalData.category}</div>
 					<div className="card__name">{modalData.name}</div>
-					<div className="card__price">{modalData.price}</div>
+					<div className="card__price_amount">{modalData.price}</div>
 					{children}
-				</div>
-				<button
+					<button
 					 className="btn waves-effect waves-light #03a9f4 light-blue"
 					 onClick={()=> {
 				        setAnswer(true)
@@ -31,6 +30,8 @@ export const Modal = ({active, setActive, setAnswer, modalData, children}) => {
 				>
 					ORDER
 				</button>
+				</div>
+				
 			</div>
 		</div>
 

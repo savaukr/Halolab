@@ -10,6 +10,7 @@ export const useValidInput = (initialValue) => {
 
 	const onBlur = () => {
 		setDirty(true)
+		console.log('blur')
 	}
 
 	return {
