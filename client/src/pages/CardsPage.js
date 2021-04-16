@@ -104,7 +104,9 @@ export const CardsPage = () => {
 					<div className="input__wrapper">
 						<div className='error'>
 							{ isErr.name ? 'Error' : '' }
+							{ isErr.name ? <span></span> : ''}
 						</div>
+
 						<input 
 							  	placeholder="Name"
 							  	id="name"
@@ -115,6 +117,9 @@ export const CardsPage = () => {
 								onChange={userName.onChange}
 								onBlur={userName.onBlur}
 						/>
+						{ isErr.name ? <div 
+							className='errorClose'
+						></div> : ''}
 						<div className="errorMessage">
 							{ isErr.name ? userName.errorMessage : '' }
 						</div>
@@ -133,6 +138,7 @@ export const CardsPage = () => {
 							onChange={userPhone.onChange}
 							onBlur={userPhone.onBlur}
 						/>
+						{ isErr.phone ? <div className='errorClose'></div> : ''}
 						<div className="errorMessage">
 							{ isErr.phone ? userPhone.errorMessage : '' }
 						</div>
