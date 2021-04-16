@@ -58,6 +58,7 @@
 	justify-content: center;
 	align-items: center;
 	color: #000000;
+	width:100%;
 }
 
 .modal__body button {
@@ -65,22 +66,23 @@
 	flex-direction: column;
 	align-items: center;
 	padding: 16px 103px;
+	margin: 35px 0 15px 0;
 	background: #4BCFA0;
 	color: #FFFFFF;
 	border-radius: 16px;
 	outline: none;
 	border: none;
 	position: relative;
+	width:75%;
 }
 .modal__body button:hover:after {
-	content: '→';
+	content: '➜';
 	position: absolute;
-	top: 15px;
-	right: 85px;
+	transform: translate(35px, -2px);
 	width:10px;
 }
 
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 990px) {
 	.modal__content {
 		width: 40%;
 	}
@@ -90,20 +92,19 @@
 		width: 50%;
 	}
 }
-@media only screen and (max-width: 761px) {
+@media only screen and (max-width: 760px) {
 	.modal__content {
-		width: 60%;
+		width: 58%;
+	}
+}
+
+@media only screen and (max-width: 640px) {
+	.modal__content {
+		width: 67%;
 	}
 }
 @media only screen and (max-width: 480px) {
 	.modal__content {
 		width: 80%;
-	}
-	.modal__body button {
-		padding: 14px 88px;
-	}
-	.modal__body button:hover:after {
-		top:13px;
-		right: 32%;
 	}
 }

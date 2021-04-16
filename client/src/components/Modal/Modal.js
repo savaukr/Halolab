@@ -22,14 +22,13 @@ export const Modal = ({active, setActive, setAnswer, modalData, children}) => {
 					<div className="card__price_amount">{modalData.price}</div>
 					{children}
 					<button
-					 className="btn waves-effect waves-light #03a9f4 light-blue"
-					 onClick={()=> {
-				        setAnswer(true)
-					 	setActive(false)
-					 }}
-				>
-					ORDER
-				</button>
+						 className="btn waves-effect waves-light #03a9f4 light-blue"
+						 onClick={()=> {
+					        setAnswer(true)
+						 	setActive(false)
+						 }}
+					>ORDER
+					</button>
 				</div>
 				
 			</div>

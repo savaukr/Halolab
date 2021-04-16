@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
 	try {
 		const {category, name, price, userName, userPhone} = req.body
 		///////////////////////
-		res.status(201).json({message: 'Дані успішно отриманні'})
+		res.status(201).json({message: 'Дані успішно отриманні', data:`${category}, ${name}, ${price}`})
 	} catch {
 		res.status(500).json({message:'Помилка при отриманні даних'})
 	}

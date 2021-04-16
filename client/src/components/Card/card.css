@@ -25,8 +25,21 @@
 }
 .card__price_amount {
 	font-size: 60px;
+	padding:  0 0  0 17px;
 	line-height: 72px;
 	letter-spacing: -0.02em;
+	position: relative;
+}
+.card__price_amount:before {
+	content: '$';
+	width: 17px;
+	height: 35px;
+	font-size: 30px;
+	line-height: 35px;
+	letter-spacing: -0.02em;
+	position: absolute;
+	top: 5px;
+	left: 0;
 }
 
 .card__price {
