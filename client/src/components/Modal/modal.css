@@ -75,6 +75,9 @@
 	position: relative;
 	width:75%;
 }
+.modal__body button.disabled {
+	background-color: #83f1ca;;
+}
 .modal__body button:hover:after {
 	content: '➜';
 	position: absolute;

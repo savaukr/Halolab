@@ -16,11 +16,19 @@ export const useInput = (initialValue, validations) => {
 		setDirty(true)
 	}
 
+	const errorCloseClick = (elem) => {
+		setDirty(false)
+		setValue('')
+		valid.message=''
+		elem.focus()
+	} 
+
 	return {
 		value,
 		onChange,
 		onBlur,
 		isDirty,
+		errorCloseClick,
 		...valid
 	}
 }

@@ -4,13 +4,10 @@ import Loader from "react-loader-spinner";
 import {Card} from '../components/Card/Card.js'
 import {Modal} from '../components/Modal/Modal.js'
 import {useInput} from '../hooks/input.hook.js'
-
 import './cardPage.css'
-
 
 export const CardsPage = () => {
 	const {loading, request} = useHttp()
-
 	const [cards, setCards] = useState([])
 	const [modalActive, setModalActive] = useState(false)
 	const [modalAnswer, setModalAnswer] = useState(false)
@@ -19,12 +16,13 @@ export const CardsPage = () => {
 		name:'',
 		price:''
 	})
-	
-	const userName = useInput('', {isEmpty: true, isCountSymvols:3})
-	const userPhone = useInput('', {isEmpty: true, isCountSymvols:12})
+	const userName = useInput('', {isEmpty: true,  isOnlyLetters:true})
+	const userPhone = useInput('', {isEmpty: true,  isCountSymvols:12, isOnlyNumbers:true,})
+	console.log(userPhone)
+
 	const isErr = {
 		name: userName.isDirty && userName.errorMessage.length,
-		phone: userPhone.isDirty && userPhone.errorMessage.length
+	 	phone: userPhone.isDirty && userPhone.errorMessage.length
 	}
 
 	const fetchCards = useCallback(async () => {
@@ -61,20 +59,24 @@ export const CardsPage = () => {
 		}
 	}, [modalAnswer])
 
-	
 	const cheapestHandler = () => {
 		setModalData({ ...findCheapest([...cards])})
 		setModalActive(true)
 	}
 
 	if (loading) {
-		return <Loader 
+		return (
+			<div className="container">
+				<Loader 
 					type="Circles"
 					color= "#00Baaa"
 					width={50}
 					height={50}
 				/>
+			</div>
+		)
 	}
+
 	if (!cards.length) {
 		return <p>There is no product</p>
 	}
@@ -100,13 +102,23 @@ export const CardsPage = () => {
 					setActive={setModalActive}
 					setAnswer={setModalAnswer}
 					modalData={modalData}
+					isErr={isErr}
 				>	
 					<div className="input__wrapper">
 						<div className='error'>
 							{ isErr.name ? 'Error' : '' }
 							{ isErr.name ? <span></span> : ''}
 						</div>
-
+						{ isErr.name ? 
+							<div 
+								className='errorClose'
+								onClick={(event) => {
+									userName.errorCloseClick(event.target.nextSibling)
+								}}
+							>
+								&times;
+							</div> : ''
+						}
 						<input 
 							  	placeholder="Name"
 							  	id="name"
@@ -117,9 +129,6 @@ export const CardsPage = () => {
 								onChange={userName.onChange}
 								onBlur={userName.onBlur}
 						/>
-						{ isErr.name ? <div 
-							className='errorClose'
-						></div> : ''}
 						<div className="errorMessage">
 							{ isErr.name ? userName.errorMessage : '' }
 						</div>
@@ -128,6 +137,16 @@ export const CardsPage = () => {
 						<div className='error'>
 							{ isErr.phone ? 'Error' : '' }
 						</div>
+						{ isErr.phone ? 
+							<div 
+								className='errorClose'
+								onClick={(event) => {
+									userPhone.errorCloseClick(event.target.nextSibling)
+								}}
+							>
+								&times;
+							</div> : ''
+						}
 				        <input 
 						 	placeholder="Phone"
 						 	id="phone"
@@ -138,12 +157,10 @@ export const CardsPage = () => {
 							onChange={userPhone.onChange}
 							onBlur={userPhone.onBlur}
 						/>
-						{ isErr.phone ? <div className='errorClose'></div> : ''}
 						<div className="errorMessage">
 							{ isErr.phone ? userPhone.errorMessage : '' }
 						</div>
 					</div>
-			          
 				</Modal>
 			</div>
 		</div>

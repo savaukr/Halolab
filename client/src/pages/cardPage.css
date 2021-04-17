@@ -71,20 +71,20 @@
 	line-height: 28px;
 	letter-spacing: -0.02em;
 }
-.errorClose:after {
-	content: '×';
+.errorClose {
 	text-align: center;
 	position: absolute;
-	font-size: 30px;
-	line-height: 30px;
+	font-size: 20px;
+	line-height: 20px;
 	font-weight: 800;
-	width:30px;
-	height: 30px;
+	width: 24px;
+	height: 24px;
 	background-color: #E43F3F; 
 	color: #ffffff;
 	border-radius: 50%;
 	top:62px;
 	right:10px;
+	cursor:pointer;
 	
 }
 .errorMessage {
