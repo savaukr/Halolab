@@ -2,6 +2,7 @@ import React, {useEffect, useState, useCallback} from 'react'
 import {useHttp} from '../hooks/http.hook.js'
 import Loader from "react-loader-spinner";
 import {Card} from '../components/Card/Card.js'
+import {Inputs} from '../components/Inputs/Inputs'
 import {Modal} from '../components/Modal/Modal.js'
 import {useInput} from '../hooks/input.hook.js'
 import './cardPage.css'
@@ -17,8 +18,7 @@ export const CardsPage = () => {
 		price:''
 	})
 	const userName = useInput('', {isEmpty: true,  isOnlyLetters:true})
-	const userPhone = useInput('', {isEmpty: true,  isCountSymvols:12, isOnlyNumbers:true,})
-	console.log(userPhone)
+	const userPhone = useInput('', {isEmpty: true,  isCountSymvols:12, isOnlyNumbers:true})
 
 	const isErr = {
 		name: userName.isDirty && userName.errorMessage.length,
@@ -36,11 +36,12 @@ export const CardsPage = () => {
 		try {
 			const data = await request('/api/product', 'POST', {
 				...modalData,
-				userName: userName.value,
-				userPhone: userPhone.value
+				userName: userName.value.trim(),
+				userPhone: userPhone.value.trim()
 			})
 			console.log('data:', modalData)
 			console.log('Name:', userName.value, '  Phone:', userPhone.value )
+			console.log(data)
 			setModalAnswer(false)
 		} catch (e) {}
 	}, [request, modalData, userName.value, userPhone.value])
@@ -58,6 +59,11 @@ export const CardsPage = () => {
 			makeOrder()
 		}
 	}, [modalAnswer])
+
+	useEffect(()=>{
+		if (isErr.name)  userName.clearInput()
+		if (isErr.phone) userPhone.clearInput()
+	}, [modalActive])
 
 	const cheapestHandler = () => {
 		setModalData({ ...findCheapest([...cards])})
@@ -78,7 +84,11 @@ export const CardsPage = () => {
 	}
 
 	if (!cards.length) {
-		return <p>There is no product</p>
+		return  (
+			<div className="container">
+				<p>There is no product</p>
+			</div>
+		)
 	}
 
 	return (
@@ -103,64 +113,13 @@ export const CardsPage = () => {
 					setAnswer={setModalAnswer}
 					modalData={modalData}
 					isErr={isErr}
+					value={{valueName: userName.value.trim(), valuePhone: userPhone.value.trim()}}
 				>	
-					<div className="input__wrapper">
-						<div className='error'>
-							{ isErr.name ? 'Error' : '' }
-							{ isErr.name ? <span></span> : ''}
-						</div>
-						{ isErr.name ? 
-							<div 
-								className='errorClose'
-								onClick={(event) => {
-									userName.errorCloseClick(event.target.nextSibling)
-								}}
-							>
-								&times;
-							</div> : ''
-						}
-						<input 
-							  	placeholder="Name"
-							  	id="name"
-								name="userName"
-								type="text"
-								className={isErr.name ? 'input_validate input_error': 'input_validate'}
-								value={userName.value}
-								onChange={userName.onChange}
-								onBlur={userName.onBlur}
-						/>
-						<div className="errorMessage">
-							{ isErr.name ? userName.errorMessage : '' }
-						</div>
-					</div>
-					<div className="input__wrapper">
-						<div className='error'>
-							{ isErr.phone ? 'Error' : '' }
-						</div>
-						{ isErr.phone ? 
-							<div 
-								className='errorClose'
-								onClick={(event) => {
-									userPhone.errorCloseClick(event.target.nextSibling)
-								}}
-							>
-								&times;
-							</div> : ''
-						}
-				        <input 
-						 	placeholder="Phone"
-						 	id="phone"
-							name="userPhone"
-							type="text"
-							className={isErr.phone ? 'input_validate input_error': 'input_validate'}
-							value={userPhone.value}
-							onChange={userPhone.onChange}
-							onBlur={userPhone.onBlur}
-						/>
-						<div className="errorMessage">
-							{ isErr.phone ? userPhone.errorMessage : '' }
-						</div>
-					</div>
+					<Inputs 
+						isErr={isErr}
+						userName={userName}
+						userPhone={userPhone}
+					/>
 				</Modal>
 			</div>
 		</div>

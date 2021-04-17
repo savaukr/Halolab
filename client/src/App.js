@@ -10,9 +10,9 @@ function App() {
   const routes = useRoutes()
   return (
       <Router>
-        <div className="container">
+        <>
           {routes}
-        </div>
+        </>
       </Router>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import './modal.css'
 
-export const Modal = ({active, setActive, setAnswer, modalData, children, isErr}) => {
+export const Modal = ({active, setActive, setAnswer, modalData, children, isErr, value}) => {
 	return (
 		<div
 			className={active ? 'modal__overlay active': 'modal__overlay'}
@@ -22,9 +22,9 @@ export const Modal = ({active, setActive, setAnswer, modalData, children, isErr}
 					<div className="card__price_amount">{modalData.price}</div>
 					{children}
 					<button
-						 className = {`${isErr.name || isErr.phone ? 'disabled' : ''}`}
+						 className = {`${isErr.name || isErr.phone || !value.valueName || !value.valuePhone ? 'disabled' : ''}`}
 						 onClick={()=> {
-							if (!isErr.name && !isErr.phone) {
+							if (!isErr.name && !isErr.phone && value.valueName && value.valuePhone) {
 								setAnswer(true)
 								setActive(false)
 							}

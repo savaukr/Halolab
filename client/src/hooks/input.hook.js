@@ -22,6 +22,11 @@ export const useInput = (initialValue, validations) => {
 		valid.message=''
 		elem.focus()
 	} 
+	const clearInput = () => {
+		setDirty(false)
+		setValue('')
+		valid.message=''
+	}
 
 	return {
 		value,
@@ -29,6 +34,7 @@ export const useInput = (initialValue, validations) => {
 		onBlur,
 		isDirty,
 		errorCloseClick,
+		clearInput,
 		...valid
 	}
 }

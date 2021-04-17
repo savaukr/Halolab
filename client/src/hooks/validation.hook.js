@@ -10,6 +10,7 @@ export const useValidation = (value, validations) => {
 	const [errorMessage, setErrorMessage] = useState('')
 
 	useEffect(() => {
+		
 		for (const validation in validations) {
 			switch (validation) {
 				case 'isEmpty':
@@ -44,11 +45,15 @@ export const useValidation = (value, validations) => {
 						setCountSymErr(false)
 					}  
 					break
-				
+				default: setCountSymErr(false)
 			}
 		}
-		if ( !(emptyErr || onlyLettersErr || onlyNumbersErr || countSymErr) ) setErrorMessage('')
+		
 	}, [value])
+
+	useEffect(()=> {
+		if ((!emptyErr && !onlyLettersErr && !onlyNumbersErr && !countSymErr) ) setErrorMessage('')
+	}, [emptyErr, onlyLettersErr, onlyNumbersErr, countSymErr ])
 	
 	return {errorMessage}
 
